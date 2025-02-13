@@ -1,5 +1,8 @@
 import { html } from 'lit';
 import LitWithoutShadowDom from '../base/LitWithoutShadowDOM';
+import Utils from '../utils/utils';
+import Config from '../config/config';
+import CheckUserAuth from '../pages/auth/check-user-auth';
 
 class NavLink extends LitWithoutShadowDom {
   static properties = {
@@ -9,7 +12,7 @@ class NavLink extends LitWithoutShadowDom {
 
   constructor() {
     super();
-    this._checkAvailabilityProperty()
+    this._checkAvailabilityProperty();
   }
 
   _checkAvailabilityProperty() {
@@ -20,10 +23,22 @@ class NavLink extends LitWithoutShadowDom {
 
   render() {
     return html`
-      <li class="nav-item">
-        <a class="nav-link" href="${this.to}">${this.content}</a>
-      </li>
+      <ul class="navbar-nav d-flex align-items-center gap-3">
+        <nav-link content="${msg(`Dashboard`)}" to="/"></nav-link>
+        <nav-link content="${msg(`Tambah Data`)}" to="/story/add.html"></nav-link>
+        <nav-link-auth class="d-none" id="userLoggedMenu"></nav-link-auth>
+        <nav-link content="${msg(`Masuk`)}" to="/auth/login.html" id="loginMenu"></nav-link>
+      </ul>
+      <ul class="dropdown-menu">
+        <a class="dropdown-item" id="userLogOut" @click=${this._userLogOut}> ${msg(`Keluar`)} </a>
+      </ul>
     `;
+  }
+
+  _userLogOut(event) {
+    event.preventDefault();
+    Utils.destroyUserToken(Config.USER_TOKEN_KEY);
+    CheckUserAuth.checkLoginState();
   }
 }
 

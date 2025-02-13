@@ -1,12 +1,25 @@
 import formatDate from '../formattedDate.js';
+import CheckUserAuth from './auth/check-user-auth';
+import Transactions from '../network/transaction';
 
 const Dashboard = {
   async init() {
+    CheckUserAuth.checkLoginState();
     await this._initialData();
     this._initialListener();
   },
 
   async _initialData() {
+    try {
+      const response = await Transactions.getAll();
+      const responseRecords = response.data.results;
+      this._userTransactionsHistory = responseRecords.transactionsHistory;
+      this._populateTransactionsRecordToTable(this._userTransactionsHistory);
+      this._populateTransactionsDataToCard(this._userTransactionsHistory);
+    } catch (error) {
+      console.error(error);
+    }
+
     const fetchRecords = await fetch('/data/DATA.json');
     const responseRecords = await fetchRecords.json();
     this._userListStory = responseRecords.listStory;
