@@ -1,7 +1,7 @@
 import Auth from '../../network/auth';
 import Config from '../../config/config';
 import Utils from '../../utils/utils';
-import CheckUserAuth from './check-user-auth';
+import CheckUserAuth from '../../pages/auth/check-user-auth';
 
 const Login = {
   async init() {

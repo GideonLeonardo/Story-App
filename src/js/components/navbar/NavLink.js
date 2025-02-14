@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import LitWithoutShadowDom from '../base/LitWithoutShadowDOM';
-import Utils from '../utils/utils';
-import Config from '../config/config';
-import CheckUserAuth from '../pages/auth/check-user-auth';
+import Utils from '../../utils/utils';
+import Config from '../../config/config';
+import CheckUserAuth from '../../pages/auth/check-user-auth';
 
 class NavLink extends LitWithoutShadowDom {
   static properties = {

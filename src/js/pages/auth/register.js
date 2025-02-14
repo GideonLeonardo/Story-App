@@ -1,5 +1,5 @@
 import Auth from '../../network/auth';
-import CheckUserAuth from './check-user-auth';
+import CheckUserAuth from '../../pages/auth/check-user-auth';
 
 const Register = {
   async init() {

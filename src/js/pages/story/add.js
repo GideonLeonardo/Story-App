@@ -1,5 +1,5 @@
 import CheckUserAuth from '../auth/check-user-auth';
-import Transactions from '../../network/transactions';
+import Transaction from '../../network/transaction';
 
 const Add = {
   async init() {
