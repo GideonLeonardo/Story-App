@@ -36,7 +36,7 @@ const Login = {
           email: formData.email,
           password: formData.password,
         });
-        Utils.setUserToken(Config.USER_TOKEN_KEY, response.data.results.token);
+        Utils.setUserToken(Config.USER_TOKEN_KEY, response.data.loginResult.token);
         window.alert('Signed user in detected');
         this._goToDashboardPage();
       } catch (error) {
@@ -46,8 +46,8 @@ const Login = {
   },
 
   _getFormData() {
-    const email = document.querySelector('#validationCustomRecordEmail');
-    const password = document.querySelector('#validationCustomPassword');
+    const email = document.querySelector('#email');
+    const password = document.querySelector('#password');
 
     return {
       email: email.value,

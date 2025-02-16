@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Config from '../config/config';
+import ApiEndpoint from '../config/api-endpoint';
 
 const Auth = {
   async register({ name, email, password }) {
